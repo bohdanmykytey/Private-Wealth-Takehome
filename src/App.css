@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+.bootstrapTable {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+.editColumn {
+  width: 80px;
+}
+
+.editForm {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+.btnGroupEdit {
+  display: flex;
+  position: relative;
+  top: 30px;
+}
+
+.btn.btn-danger.home {
+  margin-left: 12px;
+}
