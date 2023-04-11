@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useSelector, useDispatch } from "react-redux";
 import { edit } from "../features/user";
 import { Link } from "react-router-dom";
 import { editSchema } from "../validations/userValidation";
@@ -13,64 +14,74 @@ function EditPage() {
   const [email, setEmail] = useState(user[index].email);
   const dispatch = useDispatch();
 
-  const validateUserInputs = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(editSchema),
+  });
 
-    let inputData = {
-      firstName: e.target[0].value,
-      lastName: e.target[1].value,
-      email: e.target[2].value,
-    };
+  const submitForm = (formData) => {
+    dispatch(edit({firstName: formData.firstName, lastName: formData.lastName , email: formData.email, index}))
 
-    console.log(inputData);
-    const isValid = await editSchema.isValid(inputData);
-    console.log(isValid);
+    setFirstName(formData.firstName);
+    setLastName(formData.lastName);
+    setEmail(formData.email);
   };
 
+
   return (
-    <form className="editForm" key={user[index]} onSubmit={validateUserInputs}>
+    <form
+      className="editForm"
+      key={user[index]}
+      onSubmit={handleSubmit(submitForm)}
+    >
       <div className="form-row">
         <div className="form-group col-md-6 ">
           <label htmlFor="First Name">First Name</label>
           <input
             type="text"
-            required
-            onChange={(e) => setFirstName(e.target.value)}
+            name="firstName"
             className="form-control"
             defaultValue={user[index].firstName}
+            {...register("firstName")}
           />
+          <span>{errors.firstName?.message}</span>
         </div>
         <div className="form-group col-md-6">
           <label htmlFor="Last Name">Last Name</label>
           <input
             type="text"
-            required
-            onChange={(e) => setLastName(e.target.value)}
+            name="lastName"
             className="form-control"
             defaultValue={user[index].lastName}
+            {...register("lastName", { required: true })}
           />
+          <span>{errors.lastName?.message}</span>
         </div>
         <div className="form-group col-md-12">
           <label htmlFor="Email">Email</label>
           <input
             type="email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
             className="form-control"
             defaultValue={user[index].email}
+            {...register("email")}
           />
+          <span>{errors.email?.message}</span>
         </div>
       </div>
       <div className="btnGroupEdit">
-          <button
-            onClick={() => {
-              dispatch(edit({ firstName, lastName, email, index }));
-            }}
-            type="submit"
-            className="btn btn-success"
-          >
-            Save
-          </button>
+        <button
+          onClick={() => {
+            handleSubmit();
+          }}
+          type="submit"
+          className="btn btn-success"
+        >
+          Save
+        </button>
         <Link to="/">
           <button type="button" className="btn btn-danger home">
             Home
