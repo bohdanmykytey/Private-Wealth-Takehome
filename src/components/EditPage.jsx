@@ -24,7 +24,7 @@ function EditPage() {
             required
             onChange={(e) => setFirstName(e.target.value)}
             className="form-control"
-            value={user[index].firstName}
+            defaultValue={user[index].firstName}
           />
         </div>
         <div className="form-group col-md-6">
@@ -34,7 +34,7 @@ function EditPage() {
             required
             onChange={(e) => setLastName(e.target.value)}
             className="form-control"
-            value={user[index].lastName}
+            defaultValue={user[index].lastName}
           />
         </div>
         <div className="form-group col-md-12">
@@ -44,7 +44,7 @@ function EditPage() {
             required
             onChange={(e) => setEmail(e.target.value)}
             className="form-control"
-            value={user[index].email}
+            defaultValue={user[index].email}
           />
         </div>
       </div>
