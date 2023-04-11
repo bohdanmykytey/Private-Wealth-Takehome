@@ -2,19 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialStateValue = [
   {
-    userIndex: 1,
     firstName: "Bohdan",
     lastName: "Mykytey",
     email: "bohdan.mykytey@gmail.com",
   },
   {
-    userIndex: 2,
     firstName: "Bob",
     lastName: "Johnson",
     email: "robert.johnson@gmail.com",
   },
   {
-    userIndex: 3,
     firstName: "Steve",
     lastName: "Smith",
     email: "stephen.smith@gmail.com",

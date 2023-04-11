@@ -25,7 +25,7 @@ function UserData() {
             </button>
           </Link>
         </td>
-        <td>{user.userIndex}</td>
+        <td>{index + 1}</td>
         <td>{user.firstName}</td>
         <td>{user.lastName}</td>
         <td>{user.email}</td>
