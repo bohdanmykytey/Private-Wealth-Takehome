@@ -26,8 +26,7 @@ export const userSlice = createSlice({
       state.value = payload.value;
     },
     edit: (state, action) => {
-      state.value.pop()
-      state.value.push(action.payload)
+      state.value.splice(action.payload.index, 1, action.payload);
     },
   },
 });
