@@ -23,7 +23,7 @@ export const userSlice = createSlice({
   initialState: { value: initialStateValue },
   reducers: {
     show: (state, payload) => {
-      state.value = payload.value;
+      return state.value = payload.value;
     },
     edit: (state, action) => {
       state.value.splice(action.payload.index, 1, action.payload);
