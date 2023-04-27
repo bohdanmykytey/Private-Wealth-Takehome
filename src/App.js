@@ -6,9 +6,6 @@ import PageNotFound from "./components/pageNotFound";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
-  // useEffect(() => {
-  //   window.location.pathname.replace("/");
-  // },[window.location.reload]);
 
   return (
     <div className="App">
